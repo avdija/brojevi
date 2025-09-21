@@ -1,0 +1,22 @@
+name: Create MD file
+on:
+  push:
+    # paths:
+      # - brojevi.json
+jobs:
+  publish:
+    name: Create MD file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@main
+      - run: python -m pip install prettytable
+      - run: python brojevi.py brojevi > brojevi.md
+      - uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: Initial Commit
+          push_options: '--force'
+          commit_options: '--amend'
+          commit_user_name: avdija
+          commit_user_email: avdija@rarefind.se
+          commit_author: Avdija Ahmedhodžić <avdija@iqq.se>
